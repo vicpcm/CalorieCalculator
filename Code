@@ -1,0 +1,123 @@
+import java.util.Scanner;
+class Main {
+  
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        // Get the user's age
+        System.out.print("Please enter your age: ");
+        int age = input.nextInt();
+
+        // Get the user's gender
+        System.out.print("Please enter your gender (M/F): ");
+        String gender = input.next();
+
+        // Get the user's height in feet and inches
+        System.out.print("Please enter your height (feet,inches): ");
+        String heightStr = input.next();
+        String[] heightArr = heightStr.split(",");
+        int feet = Integer.parseInt(heightArr[0]);
+        int inches = Integer.parseInt(heightArr[1]);
+
+        // Convert the height to meters for use in the BMI calculation
+        double heightMeters = ((feet * 12) + inches) * 0.0254;
+
+        // Get the user's weight in pounds
+        System.out.print("Please enter your weight in pounds: ");
+        double weightPounds = input.nextDouble();
+
+        // Convert the weight to kilograms for use in the BMI calculation
+        double weightKilograms = weightPounds * 0.45359237;
+
+        // Calculate the user's BMI
+        double bmi = weightKilograms / Math.pow(heightMeters, 2);
+
+        // Display the user's BMI
+        System.out.printf("Your BMI is: %.2f\n", bmi);
+
+        // Get the user's activity level
+        double activityFactor = getActivityFactor(input);
+
+        // Calculate the user's daily caloric needs to maintain weight depending on the         gender
+        double bmr;
+        if (gender.equalsIgnoreCase("M")) {
+            // Male BMR formula
+            bmr = 88.362 + (13.397 * weightKilograms) + (4.799 * heightMeters * 100) - (5.677 * age);
+        } else {
+            // Female BMR formula
+            bmr = 447.593 + (9.247 * weightKilograms) + (3.098 * heightMeters * 100) - (4.330 * age);
+        }
+
+        double calories = bmr * activityFactor;
+
+        // Display the user's recommended daily caloric intake
+        System.out.printf("To maintain your current weight, you should consume approximately %.2f calories per day.\n", calories);
+
+        // Ask the user about their weight goal
+        System.out.print("Would you like to maintain, gain or lose weight? ");
+        String weightGoal = input.next();
+
+        // Calculate the user's daily caloric needs based on their weight goal
+        double goalCalories;
+        switch (weightGoal.toLowerCase()) {
+            case "maintain":
+                goalCalories = calories;
+                break;
+            case "gain":
+                goalCalories = calories + 500;
+                break;
+            case "lose":
+                goalCalories = calories - 500;
+                break;
+            default:
+                System.out.println("Invalid selection, using maintain weight goal.");
+                goalCalories = calories;
+        }
+
+        // Display the user's recommended daily caloric intake based on their weight goal
+        System.out.printf("To %s weight, you should consume approximately %.2f calories per day.\n", weightGoal.toLowerCase(), goalCalories);
+
+        // Close the scanner
+        input.close();
+
+        System.out.println("We hope this helps on your journey to maintaining a healthy weight!");
+    }
+
+  /**
+* Get the user's activity factor based on their self-reported activity level
+* @param input Scanner object for user input
+* @return double representing the user's activity factor
+*/
+public static double getActivityFactor(Scanner input) {
+System.out.println("Please select your activity level from the following options:");
+System.out.println("1. Sedentary (little or no exercise)");
+System.out.println("2. Lightly active (light exercise or sports 1-3 days a week)");
+System.out.println("3. Moderately active (moderate exercise or sports 3-5 days a week)");
+System.out.println("4. Very active (hard exercise or sports 6-7 days a week)");
+System.out.println("5. Super active (very hard exercise or sports, physical job or training twice a day)");
+
+    int choice = input.nextInt();
+    double activityFactor;
+    switch (choice) {
+        case 1:
+            activityFactor = 1.2;
+            break;
+        case 2:
+            activityFactor = 1.375;
+            break;
+        case 3:
+            activityFactor = 1.55;
+            break;
+        case 4:
+            activityFactor = 1.725;
+            break;
+        case 5:
+            activityFactor = 1.9;
+            break;
+        default:
+            System.out.println("Invalid selection, using sedentary activity level.");
+            activityFactor = 1.2;
+    }
+    return activityFactor;
+}
+}
