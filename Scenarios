@@ -1,0 +1,17 @@
+Scenario 1: 
+Victoria is 23 years old and is trying to check how many calories she should consume per day to lose weight in a few months. 
+Victoria needs to enter her age, specify her gender, enter her height and weight. 
+Age:23
+Height (feet, inches): 5,4
+Weight: 150 lbs.
+To calculate the BMI, the weight needs to be converted from pounds to kilograms and the feet to meters, once that is done, the weight in kilograms needs to be divided by the height in meters. 
+Based on the details, the program is going to calculate her BMI with the math formula, it will end up showing her BMI is 25.75.
+It will ask her physical activity level: sedentary, lightly active, moderately active, very active, or super active: she answered “sedentary”.
+Next, the BMR is the Basal Metabolic Rate and it helps calculate the number of calories the body burns. The activity factor will measure if the user exercises or not and how much so it estimates the calories burned per day. For women, the BMR is calculated using the formula: BMR = 447.593 + (9.247 x weight in kg) + (3.098 x height in cm) - (4.330 x age in years). The physical activity goes from 1.2 to 1.9 which goes from sedentary to very active, therefore depending on Victoria’s goal (lose weight) the daily caloric intake recommendation adjusted down by 500 calories. 
+It will show she needs to consume 1776 calories to maintain her weight. After that, it is going to ask if she wants to maintain, gain, or lose weight: she answered “lose” and the program going to output that she needs to consume approximately 1276 calories per day to lose weight. 
+
+Scenario 2: 
+George is trying to gain some weight. He is 28 years old, 5’10 tall and his weight is 190. 
+Based on the information provided, his BMI shows it is 27.26. He selected” Very Active” for his physical activity.
+For men, the BMR is calculated using the formula: BMR = 88.362 + (13.397 x weight in kg) + (4.799 x height in cm) - (5.677 x age in years) So it will show the recommended daily caloric intake is adjusted up to 500 calories since he wants to gain weight.
+With those details, we can confirm that he should consume approximately 3341 calories per day to maintain his weight. He stated he wants to gain weight, therefore, he needs to consume approximately 3841 calories per day to accomplish his goal.
